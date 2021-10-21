@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup" (input)="onFormChange()" (ngSubmit)="onSubmit()">
+  <h2>Авторизация на сайте</h2>
+  <mat-form-field>
+    <mat-label>Логин</mat-label>
+    <input matInput formControlName="login" />
+    <mat-error *ngIf="formGroup.hasError('required', 'login')"
+      >Это поле обязательно</mat-error
+    >
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>Пароль</mat-label>
+    <input matInput formControlName="password" type="password"/>
+    <mat-error *ngIf="formGroup.hasError('required', 'password')"
+      >Это поле обязательно</mat-error
+    >
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]=" disabled || formGroup.invalid || !!formError"
+  >
+    Отправить
+  </button>
+  <mat-error>{{ formError }}</mat-error>
+</form>
